@@ -24,7 +24,6 @@ public class Character {
     // Constructor kedua
     public Character(String name, CharacterType type,
                      int level, int hitPoints, int attack) {
-
         this.name = name;
         this.type = type;
         this.level = level;
@@ -58,8 +57,6 @@ public class Character {
 
     public void setLevel(int level) {
         this.level = level;
-
-        // Menghitung ulang HP dan Attack
         this.hitPoints = 100 + (level * 20);
         this.attack = 10 + (level * 5);
     }
@@ -89,13 +86,11 @@ public class Character {
 
     // Setter Mana dengan validasi
     public void setMana(int mana) {
-
         if (mana < 0) {
             throw new IllegalArgumentException(
                 "Mana tidak boleh bernilai negatif!"
             );
         }
-
         this.mana = mana;
     }
 
@@ -107,7 +102,6 @@ public class Character {
     // Menampilkan informasi karakter
     @Override
     public String toString() {
-
         return "Character{" +
                 "name='" + name + '\'' +
                 ", type=" + type +
@@ -116,5 +110,27 @@ public class Character {
                 ", attack=" + attack +
                 ", mana=" + mana +
                 '}';
+    }
+
+    // Membandingkan karakter berdasarkan nama
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Character other = (Character) obj;
+
+        return name != null && name.equalsIgnoreCase(other.name);
+    }
+
+    // HashCode harus konsisten dengan equals
+    @Override
+    public int hashCode() {
+        return name == null ? 0 : name.toLowerCase().hashCode();
     }
 }
