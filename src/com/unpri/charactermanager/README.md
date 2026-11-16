@@ -211,3 +211,69 @@ Project ini membantu memahami penerapan konsep OOP dalam pengembangan aplikasi J
 
 Java Visual (SIH-6406)  
 Universitas Prima Indonesia (UNPRI)
+
+---------------------------------------------
+## TP8 – Character Manager Sprint #3
+### MainWindow, Data Dinamis & Analisis MVC
+
+**Mata Kuliah:** Java Visual  
+**Program Studi:** Sistem Informasi  
+**Universitas:** Universitas Prima Indonesia  
+**Sprint:** 3
+
+### 1. Deskripsi Proyek
+
+Pada Sprint 3, proyek Character Manager dikembangkan dari aplikasi berbasis console menjadi aplikasi berbasis Graphical User Interface (GUI) menggunakan Java Swing.
+
+Aplikasi ini menggunakan konsep MVC (Model-View-Controller) untuk memisahkan pengelolaan data karakter dan tampilan aplikasi.
+
+### 2. Fitur yang Dikembangkan
+
+- Menampilkan karakter menggunakan Java Swing.
+- Menampilkan daftar karakter secara dinamis menggunakan perulangan.
+- Menambahkan karakter melalui formulir GUI.
+- Memilih tipe karakter.
+- Mengatur level dan mana karakter.
+- Menampilkan jumlah seluruh karakter.
+- Menghitung rata-rata level karakter secara otomatis.
+- Memperbarui daftar dan statistik setelah karakter ditambahkan.
+
+### 3. Data Karakter
+
+Berikut lima karakter awal yang digunakan untuk pengujian:
+
+| No. | Nama | Tipe | Level | Mana |
+|---|---|---|---:|---:|
+| 1 | Arjuna | WARRIOR | 5 | 50 |
+| 2 | Srikandi | ARCHER | 3 | 140 |
+| 3 | Bima | WARRIOR | 7 | 80 |
+| 4 | Gatotkaca | WARRIOR | 10 | 100 |
+| 5 | Nakula | MAGE | 8 | 120 |
+
+### 4. Implementasi MVC
+
+Pada aplikasi ini, Main.java berfungsi sebagai titik awal program yang membuat objek CharacterManager dan menyiapkan data karakter. CharacterManager mengelola kumpulan data karakter, sedangkan MainWindow bertanggung jawab menampilkan data tersebut melalui antarmuka GUI. Pemisahan ini membuat pengelolaan data dan tampilan aplikasi lebih terstruktur serta mudah dikembangkan.
+
+### 5. Screenshot Pengujian
+
+**Tampilan sebelum perubahan data**
+
+Simpan screenshot dengan nama `output_tp8_sebelum.png` di folder `screenshots`.
+
+![alt text](../../../../Screenshot/output_tp8_sebelum.png.png)
+
+**Tampilan setelah penambahan karakter**
+
+Simpan screenshot dengan nama `output_tp8_sesudah.png` di folder `screenshots`.
+
+![alt text](../../../../Screenshot/output_tp8_sesudah.png.png)
+
+### 6. Dokumentasi Analisis
+
+Dokumentasi analisis TP8 yang membahas konsep event-driven GUI, SwingUtilities.invokeLater(), JFrame, relasi is-a dan has-a, serta penerapan MVC:
+
+**Google Docs:** [https://1drv.ms/w/c/2131cfafda44bcb4/IQBopSU3QWhFQb586hXJuF2RAW-DLU_OV9G2V8YZNdR2uCY?e=d8eTxh]
+
+### 7. Kesimpulan
+
+Melalui Sprint 3, aplikasi Character Manager berhasil dikembangkan dengan antarmuka GUI menggunakan Java Swing. Pengguna dapat menambahkan karakter melalui formulir, melihat daftar karakter secara dinamis, serta memantau statistik jumlah karakter dan rata-rata level. Pengembangan ini menjadi dasar untuk penyempurnaan aplikasi pada sprint berikutnya.
