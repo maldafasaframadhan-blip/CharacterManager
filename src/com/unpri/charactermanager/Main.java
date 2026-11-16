@@ -15,54 +15,57 @@ public class Main {
             // Membuat Character Manager
             CharacterManager manager = new CharacterManager();
 
-            // Karakter 1: Arjuna
+            // KARAKTER 1 - ARJUNA
             Character arjuna = new Character(
-                    "Arjuna",
-                    CharacterType.WARRIOR
+                    "Arjuna", CharacterType.WARRIOR
             );
-            arjuna.setLevel(5);
-            arjuna.setMana(50);
+            arjuna.setLevel(8);
+            arjuna.setMana(100);
 
-            // Karakter 2: Srikandi
+            // KARAKTER 2 - SRIKANDI
             Character srikandi = new Character(
-                    "Srikandi",
-                    CharacterType.ARCHER
+                    "Srikandi", CharacterType.ARCHER
             );
-            srikandi.setLevel(3);
+            srikandi.setLevel(6);
             srikandi.setMana(140);
 
-            // Karakter 3: Bima
+            // KARAKTER 3 - BIMA
             Character bima = new Character(
-                    "Bima",
-                    CharacterType.WARRIOR
+                    "Bima", CharacterType.WARRIOR
             );
-            bima.setLevel(7);
+            bima.setLevel(4);
             bima.setMana(80);
 
-            // Karakter 4: Gatotkaca
+            // KARAKTER 4 - GATOTKACA
             Character gatotkaca = new Character(
-                    "Gatotkaca",
-                    CharacterType.WARRIOR
+                    "Gatotkaca", CharacterType.WARRIOR
             );
             gatotkaca.setLevel(10);
-            gatotkaca.setMana(100);
+            gatotkaca.setMana(150);
 
-            // Karakter 5: Nakula
+            // KARAKTER 5 - NAKULA
             Character nakula = new Character(
-                    "Nakula",
-                    CharacterType.MAGE
+                    "Nakula", CharacterType.MAGE
             );
-            nakula.setLevel(8);
+            nakula.setLevel(5);
             nakula.setMana(120);
 
-            // Menambahkan karakter ke CharacterManager
+            // KARAKTER 6 - SADewa
+            Character sadewa = new Character(
+                    "Sadewa", CharacterType.MAGE
+            );
+            sadewa.setLevel(3);
+            sadewa.setMana(90);
+
+            // MENAMBAHKAN SEMUA KARAKTER
             manager.addCharacter(arjuna);
             manager.addCharacter(srikandi);
             manager.addCharacter(bima);
             manager.addCharacter(gatotkaca);
             manager.addCharacter(nakula);
+            manager.addCharacter(sadewa);
 
-            // Membuka jendela aplikasi
+            // MEMBUKA APLIKASI GUI
             MainWindow window = new MainWindow(manager);
             window.setVisible(true);
 

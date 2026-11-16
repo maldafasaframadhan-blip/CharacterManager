@@ -2,7 +2,6 @@
 package com.unpri.charactermanager.view;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 import com.unpri.charactermanager.CharacterManager;
@@ -11,7 +10,8 @@ import com.unpri.charactermanager.model.CharacterType;
 
 public class MainWindow extends JFrame {
 
-    private CharacterManager manager;
+    private final CharacterManager manager;
+
     private JPanel characterList;
     private JLabel totalLabel;
     private JLabel averageLabel;
@@ -22,28 +22,29 @@ public class MainWindow extends JFrame {
     private JComboBox<CharacterType> typeBox;
 
     public MainWindow(CharacterManager manager) {
+
         this.manager = manager;
 
-        setTitle("Character Manager - Sprint 3");
-        setSize(850, 650);
+        setTitle("Character Manager - Sprint 4");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
 
         JPanel mainPanel = new JPanel(new BorderLayout(15, 15));
-        mainPanel.setBackground(new Color(20, 27, 45));
-        mainPanel.setBorder(new EmptyBorder(20, 25, 20, 25));
+        mainPanel.setBackground(AppTheme.BACKGROUND);
+        mainPanel.setBorder(AppTheme.PANEL_BORDER);
         setContentPane(mainPanel);
 
         // HEADER
         JLabel title = new JLabel("CHARACTER MANAGER");
-        title.setForeground(Color.WHITE);
-        title.setFont(new Font("Arial", Font.BOLD, 27));
+        title.setForeground(AppTheme.TEXT);
+        title.setFont(AppTheme.TITLE_FONT);
 
-        JLabel subtitle = new JLabel("Manage your characters");
-        subtitle.setForeground(new Color(170, 180, 200));
+        JLabel subtitle = new JLabel("SPRINT 4 - THEME EDITION");
+        subtitle.setForeground(AppTheme.SECONDARY_TEXT);
+        subtitle.setFont(AppTheme.NORMAL_FONT);
 
         JPanel header = new JPanel(new GridLayout(2, 1));
-        header.setOpaque(false);
+        header.setBackground(AppTheme.BACKGROUND);
+        header.setOpaque(true);
         header.add(title);
         header.add(subtitle);
 
@@ -51,19 +52,23 @@ public class MainWindow extends JFrame {
 
         // FORM TAMBAH KARAKTER
         JPanel form = new JPanel(new GridLayout(5, 2, 10, 10));
-        form.setBackground(new Color(35, 45, 68));
-        form.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(90, 110, 145)),
-                "Tambah Karakter",
-                0, 0,
-                new Font("Arial", Font.BOLD, 14),
-                Color.WHITE
-        ));
+        form.setBackground(AppTheme.PANEL);
+        form.setOpaque(true);
+        form.setBorder(AppTheme.PANEL_BORDER);
 
         nameField = new JTextField();
         typeBox = new JComboBox<>(CharacterType.values());
         levelField = new JTextField();
         manaField = new JTextField();
+
+        styleInput(nameField);
+        styleInput(levelField);
+        styleInput(manaField);
+
+        typeBox.setFont(AppTheme.NORMAL_FONT);
+        typeBox.setBackground(AppTheme.PANEL);
+        typeBox.setForeground(AppTheme.TEXT);
+        typeBox.setOpaque(true);
 
         form.add(createLabel("Nama Karakter"));
         form.add(nameField);
@@ -78,8 +83,10 @@ public class MainWindow extends JFrame {
         form.add(manaField);
 
         JButton addButton = new JButton("Tambah Karakter");
-        addButton.setBackground(new Color(55, 130, 235));
-        addButton.setForeground(Color.WHITE);
+        addButton.setFont(AppTheme.BOLD_FONT);
+        addButton.setBackground(AppTheme.ACCENT);
+        addButton.setForeground(AppTheme.TEXT);
+        addButton.setOpaque(true);
         addButton.setFocusPainted(false);
 
         form.add(new JLabel(""));
@@ -87,32 +94,33 @@ public class MainWindow extends JFrame {
 
         // DAFTAR KARAKTER
         characterList = new JPanel();
-        characterList.setLayout(new BoxLayout(characterList, BoxLayout.Y_AXIS));
-        characterList.setBackground(new Color(20, 27, 45));
+        characterList.setLayout(
+                new BoxLayout(characterList, BoxLayout.Y_AXIS)
+        );
+        characterList.setBackground(AppTheme.BACKGROUND);
+        characterList.setOpaque(true);
 
         JScrollPane scrollPane = new JScrollPane(characterList);
-        scrollPane.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(90, 110, 145)),
-                "Daftar Karakter",
-                0, 0,
-                new Font("Arial", Font.BOLD, 14),
-                Color.WHITE
-        ));
-        scrollPane.getViewport().setBackground(new Color(20, 27, 45));
+        scrollPane.setBorder(AppTheme.PANEL_BORDER);
+        scrollPane.getViewport().setBackground(AppTheme.BACKGROUND);
+        scrollPane.getViewport().setOpaque(true);
+        scrollPane.setPreferredSize(new Dimension(600, 280));
 
-        JPanel centerPanel = new JPanel(new BorderLayout(10, 15));
-        centerPanel.setOpaque(false);
+        JPanel centerPanel = new JPanel(new BorderLayout(10, 10));
+        centerPanel.setBackground(AppTheme.BACKGROUND);
+        centerPanel.setOpaque(true);
         centerPanel.add(form, BorderLayout.NORTH);
         centerPanel.add(scrollPane, BorderLayout.CENTER);
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
         // STATISTIK
-        totalLabel = new JLabel();
-        averageLabel = new JLabel();
+        totalLabel = new JLabel("0");
+        averageLabel = new JLabel("0.00");
 
         JPanel stats = new JPanel(new GridLayout(1, 2, 15, 0));
-        stats.setOpaque(false);
+        stats.setBackground(AppTheme.BACKGROUND);
+        stats.setOpaque(true);
 
         stats.add(createStatPanel("TOTAL KARAKTER", totalLabel));
         stats.add(createStatPanel("RATA-RATA LEVEL", averageLabel));
@@ -123,24 +131,40 @@ public class MainWindow extends JFrame {
         addButton.addActionListener(e -> addCharacter());
 
         refreshCharacters();
+
+        // PACK UNTUK MENYESUAIKAN UKURAN KOMPONEN
+        pack();
+        setLocationRelativeTo(null);
+    }
+
+    private void styleInput(JTextField field) {
+        field.setFont(AppTheme.NORMAL_FONT);
+        field.setBackground(AppTheme.PANEL);
+        field.setForeground(AppTheme.TEXT);
+        field.setOpaque(true);
+        field.setBorder(AppTheme.PANEL_BORDER);
     }
 
     private JLabel createLabel(String text) {
         JLabel label = new JLabel(text);
-        label.setForeground(Color.WHITE);
+        label.setForeground(AppTheme.TEXT);
+        label.setFont(AppTheme.NORMAL_FONT);
         return label;
     }
 
     private JPanel createStatPanel(String title, JLabel value) {
+
         JPanel panel = new JPanel(new GridLayout(2, 1, 5, 5));
-        panel.setBackground(new Color(35, 45, 68));
-        panel.setBorder(new EmptyBorder(12, 15, 12, 15));
+        panel.setBackground(AppTheme.PANEL);
+        panel.setOpaque(true);
+        panel.setBorder(AppTheme.PANEL_BORDER);
 
         JLabel heading = new JLabel(title);
-        heading.setForeground(new Color(170, 190, 220));
+        heading.setForeground(AppTheme.SECONDARY_TEXT);
+        heading.setFont(AppTheme.NORMAL_FONT);
 
-        value.setForeground(Color.WHITE);
-        value.setFont(new Font("Arial", Font.BOLD, 22));
+        value.setForeground(AppTheme.TEXT);
+        value.setFont(AppTheme.TITLE_FONT);
 
         panel.add(heading);
         panel.add(value);
@@ -148,13 +172,17 @@ public class MainWindow extends JFrame {
         return panel;
     }
 
+    // MENAMBAHKAN KARAKTER
     private void addCharacter() {
+
         try {
+
             String name = nameField.getText().trim();
 
             if (name.isEmpty()) {
-                JOptionPane.showMessageDialog(this,
-                        "Nama karakter tidak boleh kosong!");
+                JOptionPane.showMessageDialog(
+                        this, "Nama karakter tidak boleh kosong!"
+                );
                 return;
             }
 
@@ -162,8 +190,9 @@ public class MainWindow extends JFrame {
             int mana = Integer.parseInt(manaField.getText().trim());
 
             if (level < 1 || mana < 0) {
-                JOptionPane.showMessageDialog(this,
-                        "Level minimal 1 dan mana tidak boleh negatif!");
+                JOptionPane.showMessageDialog(
+                        this, "Level minimal 1 dan mana tidak boleh negatif!"
+                );
                 return;
             }
 
@@ -175,12 +204,16 @@ public class MainWindow extends JFrame {
             character.setMana(mana);
 
             int before = manager.getTotalCharacters();
+
             manager.addCharacter(character);
+
             int after = manager.getTotalCharacters();
 
             if (after == before) {
-                JOptionPane.showMessageDialog(this,
-                        "Karakter gagal ditambahkan. Nama mungkin sudah digunakan.");
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Karakter gagal ditambahkan. Nama mungkin sudah digunakan."
+                );
                 return;
             }
 
@@ -190,41 +223,80 @@ public class MainWindow extends JFrame {
 
             refreshCharacters();
 
-            JOptionPane.showMessageDialog(this,
-                    "Karakter berhasil ditambahkan!");
+            JOptionPane.showMessageDialog(
+                    this, "Karakter berhasil ditambahkan!"
+            );
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Level dan mana harus berupa angka!");
+
+            JOptionPane.showMessageDialog(
+                    this, "Level dan mana harus berupa angka!"
+            );
         }
     }
 
+    // MEMPERBARUI DAFTAR DAN STATISTIK
     private void refreshCharacters() {
+
         characterList.removeAll();
 
         int total = manager.getTotalCharacters();
         int sumLevel = 0;
 
         for (Character character : manager.getAllCharacters()) {
+
             sumLevel += character.getLevel();
 
-            JPanel card = new JPanel(new BorderLayout());
-            card.setBackground(new Color(35, 45, 68));
-            card.setBorder(new EmptyBorder(12, 15, 12, 15));
-            card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 65));
+            String role = String.valueOf(character.getType());
 
-            JLabel name = new JLabel(character.toString());
-            name.setForeground(Color.WHITE);
-            name.setFont(new Font("Arial", Font.BOLD, 14));
+            JPanel card = new JPanel(new BorderLayout(10, 5));
 
-            card.add(name, BorderLayout.CENTER);
+            // WARNA KARTU SESUAI ROLE
+            card.setBackground(AppTheme.colorFor(role));
+            card.setOpaque(true);
+
+            // BORDER BERBEDA SESUAI ROLE
+            card.setBorder(AppTheme.borderFor(role));
+
+            JLabel nameLabel = new JLabel(character.toString());
+            nameLabel.setFont(AppTheme.NORMAL_FONT);
+            nameLabel.setForeground(AppTheme.TEXT);
+
+            JLabel levelLabel = new JLabel(
+                    "LEVEL: " + character.getLevel()
+            );
+
+            // MINI-CHALLENGE LEVEL 5 KE ATAS
+            if (character.getLevel() >= AppTheme.HIGH_LEVEL_LIMIT) {
+                levelLabel.setForeground(AppTheme.GOLD);
+                levelLabel.setFont(AppTheme.HIGH_LEVEL_FONT);
+            } else {
+                levelLabel.setForeground(AppTheme.TEXT);
+                levelLabel.setFont(AppTheme.NORMAL_FONT);
+            }
+
+            // PROPERTI TAMBAHAN: TOOLTIP
+            card.setToolTipText(
+                    "Detail karakter: " + character.toString()
+            );
+
+            nameLabel.setToolTipText(
+                    "Role: " + role
+            );
+
+            card.add(nameLabel, BorderLayout.CENTER);
+            card.add(levelLabel, BorderLayout.EAST);
+
             characterList.add(card);
             characterList.add(Box.createVerticalStrut(8));
         }
 
         totalLabel.setText(String.valueOf(total));
 
-        double average = total == 0 ? 0 : (double) sumLevel / total;
+        double average = total == 0
+                ? 0
+                : (double) sumLevel / total;
+
         averageLabel.setText(String.format("%.2f", average));
 
         characterList.revalidate();
