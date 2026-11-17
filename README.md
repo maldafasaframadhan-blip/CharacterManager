@@ -303,11 +303,11 @@ Fitur yang diterapkan pada Sprint 4:
 
 **1. Tampilan Sebelum Perubahan (Sprint 3 / v0.3)**
 
-![alt text](<../../../../Screenshot/output_tp10_sebelum.png - Salin.png>)
+![alt text](Screenshot/output_tp10_sebelum.png)
 
 **2. Tampilan Setelah Perubahan (Sprint 4 / v0.4)**
 
-![alt text](../../../../Screenshot/output_tp10_sesudah.png.png)
+![alt text](Screenshot/output_tp10_sesudah.png)
 
 ### D. Analisis Implementasi
 
