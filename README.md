@@ -469,15 +469,15 @@ Pengujian dilakukan untuk memastikan validasi input dan aturan bisnis berjalan s
 ### E. Screenshot Pengujian
 
 **1. Validasi Nama Kosong**
+![alt text](Screenshot/tp14-error-nama-kosong.png)
 
-![alt text](Screenshot/tp14-error-namakosong.png.png)
 **2. Validasi Nama Duplikat**
 
-![alt text](Screenshot/tp14-error-namaduplikat.png.png)
+![alt text](Screenshot/tp14-error-nama-duplikat.png)
 
 **3. Penambahan Karakter Berhasil**
 
-![alt text](Screenshot/tp14-success-tambahcharacter.png.png)
+![alt text](Screenshot/tp14-success-tambah-character.png)
 
 ### F. Analisis MVC
 
