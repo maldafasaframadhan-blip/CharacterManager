@@ -1,9 +1,10 @@
 
 package com.unpri.charactermanager.model;
 
+import java.util.Locale;
+
 public class Character {
 
-    // Atribut private
     private String name;
     private CharacterType type;
     private int level;
@@ -13,23 +14,62 @@ public class Character {
 
     // Constructor pertama
     public Character(String name, CharacterType type) {
-        this.name = name;
-        this.type = type;
-        this.level = 1;
-        this.hitPoints = 100;
-        this.attack = 10;
-        this.mana = 0;
+        this(name, type, 1, 100, 10);
     }
 
     // Constructor kedua
     public Character(String name, CharacterType type,
                      int level, int hitPoints, int attack) {
-        this.name = name;
+
+        validateName(name);
+        validateType(type);
+        validateLevel(level, type);
+
+        this.name = name.trim();
         this.type = type;
         this.level = level;
         this.hitPoints = hitPoints;
         this.attack = attack;
         this.mana = 0;
+    }
+
+    // Validasi nama di Model
+    private void validateName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                "Nama karakter tidak boleh kosong!"
+            );
+        }
+
+        if (name.trim().length() > 20) {
+            throw new IllegalArgumentException(
+                "Nama karakter maksimal 20 karakter!"
+            );
+        }
+    }
+
+    // Validasi role di Model
+    private void validateType(CharacterType type) {
+        if (type == null) {
+            throw new IllegalArgumentException(
+                "Role karakter harus dipilih!"
+            );
+        }
+    }
+
+    // Validasi level di Model
+    private void validateLevel(int level, CharacterType type) {
+        if (level < 1 || level > 99) {
+            throw new IllegalArgumentException(
+                "Level harus berada antara 1 sampai 99!"
+            );
+        }
+
+        if (type == CharacterType.MAGE && level > 60) {
+            throw new IllegalArgumentException(
+                "Karakter MAGE tidak boleh memiliki level di atas 60!"
+            );
+        }
     }
 
     // Getter dan Setter Name
@@ -38,7 +78,8 @@ public class Character {
     }
 
     public void setName(String name) {
-        this.name = name;
+        validateName(name);
+        this.name = name.trim();
     }
 
     // Getter dan Setter Type
@@ -47,6 +88,8 @@ public class Character {
     }
 
     public void setType(CharacterType type) {
+        validateType(type);
+        validateLevel(this.level, type);
         this.type = type;
     }
 
@@ -56,6 +99,8 @@ public class Character {
     }
 
     public void setLevel(int level) {
+        validateLevel(level, this.type);
+
         this.level = level;
         this.hitPoints = 100 + (level * 20);
         this.attack = 10 + (level * 5);
@@ -84,13 +129,14 @@ public class Character {
         return mana;
     }
 
-    // Setter Mana dengan validasi
+    // Setter Mana
     public void setMana(int mana) {
         if (mana < 0) {
             throw new IllegalArgumentException(
                 "Mana tidak boleh bernilai negatif!"
             );
         }
+
         this.mana = mana;
     }
 
@@ -125,12 +171,12 @@ public class Character {
 
         Character other = (Character) obj;
 
-        return name != null && name.equalsIgnoreCase(other.name);
+        return name.equalsIgnoreCase(other.name);
     }
 
-    // HashCode harus konsisten dengan equals
+    // HashCode konsisten dengan equals
     @Override
     public int hashCode() {
-        return name == null ? 0 : name.toLowerCase().hashCode();
+        return name.toLowerCase(Locale.ROOT).hashCode();
     }
 }
