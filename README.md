@@ -375,13 +375,13 @@ Pada TP12, aplikasi Character Manager dikembangkan menggunakan Layout Manager pa
 
 **1. Ukuran Awal**
 
-![alt text](Screenshot/tp12_ukuran_awal.png.png)
+![alt text](Screenshot/tp12_ukuran_awal.png)
 
 **2. Jendela Diperlebar**
-![alt text](Screenshot/tp12_ukuran_lebar.png.png)
+![alt text](Screenshot/TP12-02-jendela-lebar.png)
 
 **3. Jendela Diperkecil**
-![alt text](Screenshot/tp12_ukuran_kecil.png.png)
+![alt text](Screenshot/TP12-03-jendela-kecil.png)
 
 
 ### D. Struktur Panel
