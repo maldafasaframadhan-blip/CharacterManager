@@ -8,10 +8,7 @@ import javax.swing.border.Border;
 
 public final class AppTheme {
 
-    // ==============================
     // WARNA APLIKASI
-    // ==============================
-
     public static final Color BACKGROUND =
             new Color(20, 27, 45);
 
@@ -30,11 +27,17 @@ public final class AppTheme {
     public static final Color GOLD =
             new Color(255, 200, 60);
 
+    // WARNA VALIDASI
+    public static final Color ERROR =
+            new Color(255, 90, 90);
 
-    // ==============================
+    public static final Color INPUT_BACKGROUND =
+            new Color(245, 247, 252);
+
+    public static final Color INPUT_TEXT =
+            new Color(30, 35, 45);
+
     // FONT APLIKASI
-    // ==============================
-
     public static final Font TITLE_FONT =
             new Font(Font.SANS_SERIF, Font.BOLD, 27);
 
@@ -47,27 +50,22 @@ public final class AppTheme {
     public static final Font HIGH_LEVEL_FONT =
             new Font(Font.SANS_SERIF, Font.BOLD, 14);
 
-
-    // ==============================
     // BORDER APLIKASI
-    // ==============================
-
     public static final Border PANEL_BORDER =
             BorderFactory.createLineBorder(
                     new Color(90, 110, 145), 1);
 
+    public static final Border INPUT_BORDER =
+            BorderFactory.createLineBorder(
+                    new Color(150, 160, 180), 1);
 
-    // ==============================
+    public static final Border ERROR_BORDER =
+            BorderFactory.createLineBorder(ERROR, 2);
+
     // BATAS LEVEL TINGGI
-    // ==============================
-
     public static final int HIGH_LEVEL_LIMIT = 5;
 
-
-    // ==============================
     // WARNA BERDASARKAN ROLE
-    // ==============================
-
     public static Color colorFor(String role) {
 
         if (role == null) {
@@ -85,16 +83,15 @@ public final class AppTheme {
             case "MAGE":
                 return new Color(100, 90, 190);
 
+            case "ASSASSIN":
+                return new Color(80, 85, 100);
+
             default:
                 return PANEL;
         }
     }
 
-
-    // ==============================
     // BORDER BERDASARKAN ROLE
-    // ==============================
-
     public static Border borderFor(String role) {
 
         if (role == null) {
@@ -115,18 +112,16 @@ public final class AppTheme {
                 return BorderFactory.createLineBorder(
                         new Color(140, 120, 230), 2);
 
+            case "ASSASSIN":
+                return BorderFactory.createLineBorder(
+                        new Color(150, 160, 180), 2);
+
             default:
                 return PANEL_BORDER;
         }
     }
 
-
-    // ==============================
-    // CONSTRUCTOR
-    // ==============================
-
     private AppTheme() {
         // Mencegah objek AppTheme dibuat
     }
-
 }
