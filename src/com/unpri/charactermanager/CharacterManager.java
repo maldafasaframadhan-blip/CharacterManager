@@ -8,11 +8,20 @@ import java.util.ArrayList;
 public class CharacterManager {
 
     // Menyimpan daftar karakter
-    private ArrayList<Character> characters;
+    private final ArrayList<Character> characters;
 
     // Constructor
     public CharacterManager() {
         characters = new ArrayList<>();
+    }
+
+    // Memeriksa apakah nama sudah digunakan
+    public boolean isNameTaken(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return false;
+        }
+
+        return findByName(name.trim()) != null;
     }
 
     // Menambahkan karakter dan menolak nama duplikat
@@ -21,9 +30,10 @@ public class CharacterManager {
             return false;
         }
 
-        if (characters.contains(character)) {
-            System.out.println("Karakter " + character.getName()
-                    + " sudah ada!");
+        if (isNameTaken(character.getName())) {
+            System.out.println(
+                "Karakter " + character.getName() + " sudah ada!"
+            );
             return false;
         }
 
@@ -33,8 +43,12 @@ public class CharacterManager {
 
     // Mencari karakter berdasarkan nama
     public Character findByName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return null;
+        }
+
         for (Character character : characters) {
-            if (character.getName().equalsIgnoreCase(name)) {
+            if (character.getName().equalsIgnoreCase(name.trim())) {
                 return character;
             }
         }
@@ -92,10 +106,7 @@ public class CharacterManager {
         return result;
     }
 
-    /**
-     * Mencari karakter dengan attack tertinggi.
-     * @return karakter terkuat atau null jika daftar kosong
-     */
+    // Mencari karakter dengan attack tertinggi
     public Character findStrongest() {
         if (characters.isEmpty()) {
             return null;
